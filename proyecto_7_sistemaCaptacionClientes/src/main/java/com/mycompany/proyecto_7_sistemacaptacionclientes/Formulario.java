@@ -20,6 +20,10 @@ public class Formulario extends javax.swing.JFrame {
      */
     public Formulario() {
         initComponents();
+        this.txtNombre.setText("");
+        this.txtApellido.setText("");
+        this.txtEmail.setText("");
+        this.txtTelefono.setText("");
     }
 
     /**
@@ -145,22 +149,27 @@ public class Formulario extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         //opcion 1 String nombre = this.txtNombre.getText();
-        
-        Cliente cliente = new Cliente();
-        cliente.setNombre(this.txtNombre.getText());
-        cliente.setApellido(this.txtApellido.getText());
-        cliente.setEmail(this.txtEmail.getText());
-        cliente.setTelefono(this.txtTelefono.getText());
-        
         //String[] clientes = new String[10];
         //JOptionPane.showMessageDialog(rootPane, cliente.toString());
         
         //opcion 1 clientes.add(nombre);
-        clientes.add(cliente);
-        actualizarLista();
         
-        JOptionPane.showMessageDialog(rootPane, "El cliente se guardo correctamente");
-        limpiarCajasDeTexto();
+        Cliente cliente = new Cliente();
+        cliente.setNombre(this.txtNombre.getText());        
+        cliente.setApellido(this.txtApellido.getText());
+        cliente.setEmail(this.txtEmail.getText());
+        cliente.setTelefono(this.txtTelefono.getText()); 
+        
+        if (cliente.getNombre().equals("") || cliente.getApellido().equals("") 
+                || cliente.getEmail().equals("")|| cliente.getTelefono().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Antes de poder guardar, has de completar todos los campos de texto");
+        } else {         
+            clientes.add(cliente);
+            actualizarLista();
+            JOptionPane.showMessageDialog(rootPane, "El cliente se guardo correctamente.");
+            limpiarCajasDeTexto();            
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     
